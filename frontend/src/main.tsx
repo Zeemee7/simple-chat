@@ -5,7 +5,9 @@ import LandingPage from './LandingPage.tsx'
 import ErrorPage from "./ErrorPage.tsx";
 import CustomerHomePage from "./CustomerHomePage.tsx";
 import AgentHomePage from "./AgentHomePage.tsx";
+import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import './index.css'
+import '@fontsource/inter';
 
 const router = createBrowserRouter([
 	{
@@ -25,6 +27,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<RouterProvider router={router}/>
+		<CssVarsProvider>
+			<CssBaseline />
+			<RouterProvider router={router}/>
+		</CssVarsProvider>
 	</React.StrictMode>,
 )
