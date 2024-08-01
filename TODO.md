@@ -1,7 +1,7 @@
 # TODOs for Simple Chat Application
 ## Must have
 - [x] Basic Maven/Git setup
-- [ ] Spring Boot backend foundation
+- [x] Spring Boot backend foundation
 - [ ] React frontend foundation
 - [ ] Separate customer/agent frontend parts
 - [ ] Customer: Start a chat session
