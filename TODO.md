@@ -8,7 +8,7 @@
 - [ ] Agent: Show open chat sessions
 - [ ] Send messages
 - [ ] Show messages
-- [ ] Some general documentation (README)
+- [ ] Some general documentation (README, JSDoc?)
 
 ## Nice to have
 - [ ] Make it look nice
