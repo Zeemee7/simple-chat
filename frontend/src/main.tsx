@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from './LandingPage.tsx'
-import ErrorPage from "./ErrorPage.tsx";
-import CustomerHomePage from "./CustomerHomePage.tsx";
-import AgentHomePage from "./AgentHomePage.tsx";
+import StartPage from './pages/Start/StartPage.tsx'
+import ErrorPage from "./pages/Error/ErrorPage.tsx";
+import CustomerHomePage from "./pages/CustomerHome/CustomerHomePage.tsx";
+import AgentHomePage from "./pages/AgentHome/AgentHomePage.tsx";
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import './index.css'
 import '@fontsource/inter';
@@ -12,7 +12,7 @@ import '@fontsource/inter';
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <LandingPage/>,
+		element: <StartPage/>,
 		errorElement: <ErrorPage/>,
 	},
 	{
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<CssVarsProvider>
-			<CssBaseline />
+			<CssBaseline/>
 			<RouterProvider router={router}/>
 		</CssVarsProvider>
 	</React.StrictMode>,

@@ -1,4 +1,4 @@
-function LandingPage() {
+function StartPage() {
   return (
 	  <>
 		  <h1>Simon Erhardt's Simple Chat Application</h1>
@@ -16,4 +16,4 @@ function LandingPage() {
   )
 }
 
-export default LandingPage
+export default StartPage
