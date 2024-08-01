@@ -3,7 +3,7 @@
 - [x] Basic Maven/Git setup
 - [x] Spring Boot backend foundation
 - [x] React frontend foundation
-- [ ] Separate customer/agent frontend parts
+- [x] Separate customer/agent frontend parts
 - [ ] Customer: Start a chat session
 - [ ] Agent: Show open chat sessions
 - [ ] Send messages
