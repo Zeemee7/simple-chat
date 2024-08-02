@@ -7,7 +7,7 @@ interface Props {
 export default function Chat({session}: Readonly<Props>) {
 	return (
 		<>
-			<p>Chat started at: {session.startedAt.toLocaleString()}</p>
+			<p>Chat started at: {new Date(session.startedAt).toLocaleString()}</p>
 		</>
 	);
 }

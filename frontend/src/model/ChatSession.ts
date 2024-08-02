@@ -1,3 +1,4 @@
 export default interface ChatSession {
-	startedAt: Date;
+	id: string;
+	startedAt: number;
 }

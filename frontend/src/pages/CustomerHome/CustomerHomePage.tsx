@@ -7,7 +7,7 @@ export default function CustomerHomePage() {
 	const [activeSession, setActiveSession] = useState(null as ChatSession | null);
 
 	function startSession() {
-		setActiveSession({startedAt: new Date()});
+		setActiveSession({id: "TBD", startedAt: new Date().getMilliseconds()});
 	}
 
 	function isChatSessionActive() {
