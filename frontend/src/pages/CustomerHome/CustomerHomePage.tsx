@@ -1,7 +1,7 @@
 import { Button } from "@mui/joy";
 import { useState } from "react";
 import ChatSession from "../../model/ChatSession.ts";
-import Chat from "../../components/Chat/Chat.tsx";
+import ChatSessionBox from "../../components/ChatSessionBox/ChatSessionBox.tsx";
 import config from "../../config.ts";
 import axios from "axios";
 
@@ -26,7 +26,7 @@ export default function CustomerHomePage() {
 		<>
 			<h1>How can we help you?</h1>
 			{isChatSessionActive() ? (
-				<Chat session={activeSession!}/>
+				<ChatSessionBox session={activeSession!}/>
 			) : (
 				<Button size="lg"
 						onClick={startSession}>
