@@ -2,12 +2,20 @@ import { Button } from "@mui/joy";
 import { useState } from "react";
 import ChatSession from "../../model/ChatSession.ts";
 import Chat from "../../components/Chat/Chat.tsx";
+import config from "../../config.ts";
+import axios from "axios";
 
 export default function CustomerHomePage() {
 	const [activeSession, setActiveSession] = useState(null as ChatSession | null);
 
 	function startSession() {
-		setActiveSession({id: "TBD", startedAt: new Date().getMilliseconds()});
+		axios.post(config.apiPrefix + '/chat-sessions')
+			.then(response => {
+				setActiveSession(response.data);
+			})
+			.catch(error => {
+				console.error(error);
+			});
 	}
 
 	function isChatSessionActive() {

@@ -4,7 +4,7 @@
 - [x] Spring Boot backend foundation
 - [x] React frontend foundation
 - [x] Separate customer/agent frontend parts
-- [ ] Customer: Start a chat session
+- [x] Customer: Start a chat session
 - [ ] Agent: Show open chat sessions
 - [ ] Send messages
 - [ ] Show messages

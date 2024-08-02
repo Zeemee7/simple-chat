@@ -1,7 +1,21 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { http, HttpResponse } from "msw"
+import { setupServer } from "msw/node";
 import CustomerHomePage from "./CustomerHomePage.tsx";
 import '@testing-library/jest-dom/vitest'
+import config from "../../config.ts";
+
+const startedAt = 123456789;
+const server = setupServer(
+	http.post(config.apiPrefix + '/chat-sessions', () => {
+		return HttpResponse.json({id: "new-id", startedAt: startedAt});
+	}),
+)
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe("CustomerHomePage component", () => {
 	const buttonText = "Start chat with customer service";
@@ -17,7 +31,7 @@ describe("CustomerHomePage component", () => {
 
 		fireEvent.click(screen.getByText(buttonText));
 
-		await screen.findByText(/^Chat started at/);
+		await screen.findByText(new RegExp("^Chat started at: " + new Date(startedAt).toLocaleString()));
 		expect(screen.queryByText(buttonText)).not.toBeInTheDocument();
 	});
 });
