@@ -4,3 +4,7 @@ spring:
       static-locations:
         - "file:src/main/resources/static/"
         - "classpath:/static/"
+
+springdoc:
+  swagger-ui:
+    path: /api/v1/swagger-ui.html
