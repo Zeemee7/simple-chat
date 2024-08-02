@@ -3,7 +3,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { http, HttpResponse } from "msw"
 import { setupServer } from "msw/node";
 import CustomerHomePage from "./CustomerHomePage.tsx";
-import '@testing-library/jest-dom/vitest'
 import config from "../../config.ts";
 
 const startedAt = 123456789;

@@ -5,7 +5,7 @@
 - [x] React frontend foundation
 - [x] Separate customer/agent frontend parts
 - [x] Customer: Start a chat session
-- [ ] Agent: Show open chat sessions
+- [x] Agent: Show open chat sessions
 - [ ] Send messages
 - [ ] Show messages
 - [ ] Some general documentation (README)

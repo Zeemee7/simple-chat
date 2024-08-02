@@ -1,6 +1,5 @@
 package simonerhardt.simplechat.db.chat;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import simonerhardt.simplechat.core.chat.ChatSession;
 import simonerhardt.simplechat.core.chat.ChatSessionRepository;
@@ -11,7 +10,7 @@ import java.util.UUID;
 @Repository
 class ChatSessionMappingJpaRepository extends MappingJpaRepository<ChatSession, ChatSessionEntity, UUID> implements ChatSessionRepository {
 
-	protected ChatSessionMappingJpaRepository(JpaRepository<ChatSessionEntity, UUID> springDataJpaRepository) {
+	protected ChatSessionMappingJpaRepository(ChatSessionJpaRepository springDataJpaRepository) {
 		super(springDataJpaRepository);
 	}
 

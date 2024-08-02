@@ -18,11 +18,6 @@ class ChatSessionEntity {
 	@Column(name = "started_at")
 	private LocalDateTime startedAt;
 
-	public ChatSessionEntity() {
-		this.id = UUID.randomUUID();
-		this.startedAt = LocalDateTime.now();
-	}
-
 	UUID getId() {
 		return id;
 	}

@@ -1,5 +1,6 @@
 package simonerhardt.simplechat.api.chat;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,12 @@ import simonerhardt.simplechat.core.chat.ChatSession;
 import simonerhardt.simplechat.core.chat.ChatSessionRepository;
 
 import java.time.ZoneId;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,9 +40,29 @@ class ChatSessionControllerTest {
 		String json = mvcResult.getResponse().getContentAsString();
 		ChatSessionDto chatSessionDto = new ObjectMapper().readValue(json, ChatSessionDto.class);
 
-		assertThat(chatSessionDto).isNotNull();
-		assertThat(chatSessionDto.id()).isEqualTo(chatSession.id().toString());
-		long epochMillis = chatSession.startedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-		assertThat(chatSessionDto.startedAt()).isEqualTo(epochMillis);
+		assertChatSession(chatSessionDto, chatSession);
+	}
+
+	@Test
+	void getChatSessionsReturnsChatSessions() throws Exception {
+		ChatSession chatSession1 = new ChatSession();
+		ChatSession chatSession2 = new ChatSession();
+		when(chatSessionRepository.findAll()).thenReturn(List.of(chatSession1, chatSession2));
+
+		MvcResult mvcResult = mvc.perform(get("/api/v1/chat-sessions")).andExpect(status().isOk()).andReturn();
+
+		String json = mvcResult.getResponse().getContentAsString();
+		List<ChatSessionDto> chatSessions = new ObjectMapper().readValue(json, new TypeReference<>() {
+		});
+		assertThat(chatSessions).isNotEmpty();
+		assertChatSession(chatSessions.get(0), chatSession1);
+		assertChatSession(chatSessions.get(1), chatSession2);
+	}
+
+	private static void assertChatSession(ChatSessionDto dto, ChatSession model) {
+		assertThat(dto).isNotNull();
+		assertThat(dto.id()).isEqualTo(model.id().toString());
+		long epochMillis = model.startedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		assertThat(dto.startedAt()).isEqualTo(epochMillis);
 	}
 }

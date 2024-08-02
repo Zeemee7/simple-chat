@@ -6,7 +6,7 @@ import config from "../../config.ts";
 import axios from "axios";
 
 export default function CustomerHomePage() {
-	const [activeSession, setActiveSession] = useState(null as ChatSession | null);
+	const [activeSession, setActiveSession] = useState(undefined as ChatSession | undefined);
 
 	function startSession() {
 		axios.post(config.apiPrefix + '/chat-sessions')
@@ -19,7 +19,7 @@ export default function CustomerHomePage() {
 	}
 
 	function isChatSessionActive() {
-		return activeSession !== null;
+		return activeSession !== undefined;
 	}
 
 	return (

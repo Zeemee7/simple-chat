@@ -1,54 +1,50 @@
 package simonerhardt.simplechat.db.chat;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import simonerhardt.simplechat.core.chat.ChatSession;
+import simonerhardt.simplechat.db.BaseMappingJpaRepositoryIT;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import({ ChatSessionMappingJpaRepository.class })
-class ChatSessionMappingJpaRepositoryIT {
+class ChatSessionMappingJpaRepositoryIT extends BaseMappingJpaRepositoryIT<ChatSession, ChatSessionEntity, UUID> {
 
-	@Autowired
-	ChatSessionMappingJpaRepository chatSessionMappingJpaRepository;
-
-	@Autowired
-	TestEntityManager entityManager;
-
-	@Test
-	void saveSaves() {
-		LocalDateTime now = LocalDateTime.now();
-		UUID id = UUID.randomUUID();
-		ChatSession unsaved = new ChatSession(id, now);
-		ChatSession saved = chatSessionMappingJpaRepository.save(unsaved);
-
-		ChatSessionEntity entity = entityManager.find(ChatSessionEntity.class, saved.id());
-
-		assertThat(entity).isNotNull();
-		assertThat(entity.getId()).isEqualTo(id);
-		assertThat(entity.getStartedAt()).isEqualTo(now);
+	@Override
+	protected Class<ChatSessionEntity> getEntityClass() {
+		return ChatSessionEntity.class;
 	}
 
-	@Test
-	void loadLoads() {
-		LocalDateTime now = LocalDateTime.now();
-		UUID id = UUID.randomUUID();
+	@Override
+	protected ChatSession createNewModel() {
+		return new ChatSession();
+	}
+
+	@Override
+	protected ChatSessionEntity createNewEntity() {
 		ChatSessionEntity entity = new ChatSessionEntity();
-		entity.setId(id);
-		entity.setStartedAt(now);
-		entityManager.persist(entity);
+		entity.setId(UUID.randomUUID());
+		entity.setStartedAt(LocalDateTime.now());
+		return entity;
+	}
 
-		Optional<ChatSession> loaded = chatSessionMappingJpaRepository.findById(id);
+	@Override
+	protected UUID getModelId(ChatSession model) {
+		return model.id();
+	}
 
-		assertThat(loaded).isNotEmpty();
-		assertThat(loaded.get().startedAt()).isEqualTo(now);
+	@Override
+	protected UUID getEntityId(ChatSessionEntity entity) {
+		return entity.getId();
+	}
+
+	@Override
+	protected void assertPropertiesMatch(ChatSession model, ChatSessionEntity entity) {
+		assertThat(model.startedAt()).isEqualTo(entity.getStartedAt());
+		assertThat(model.id()).isEqualTo(entity.getId());
 	}
 }
