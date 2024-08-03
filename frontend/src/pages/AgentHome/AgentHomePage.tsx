@@ -14,6 +14,10 @@ function AgentHomePage() {
 		return activeSession !== undefined;
 	}
 
+	function handleSessionSelected(chatSession: ChatSession) {
+		setActiveSession(chatSession);
+	}
+
 	useEffect(() => {
 		if (!sessionsUpdated) {
 			chatSessionClient.getSessions().then(chatSessions => {
@@ -26,10 +30,11 @@ function AgentHomePage() {
 
 	return (
 		<Box sx={{display: 'flex', minHeight: '100dvh'}}>
-			<ChatSessionList sessions={sessions} onSessionSelected={setActiveSession} activeSession={activeSession}/>
+			<ChatSessionList sessions={sessions} onSessionSelected={handleSessionSelected} activeSession={activeSession}/>
 			<Box>
 				{isChatSessionActive() ? (
-					<ChatSessionBox session={activeSession!}/>
+					// For now, user is hardcoded :-)
+					<ChatSessionBox session={activeSession!} user="Customer Service" />
 				) : (
 					<Typography>Please select a chat session</Typography>
 				)}

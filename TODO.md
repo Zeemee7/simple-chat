@@ -6,8 +6,9 @@
 - [x] Separate customer/agent frontend parts
 - [x] Customer: Start a chat session
 - [x] Agent: Show open chat sessions
-- [ ] Send messages
-- [ ] Show messages
+- [x] Send messages
+- [ ] Show messages on load
+- [ ] Push/poll messages
 - [ ] Some general documentation (README)
 - [ ] More code documentation (JavaDoc, OpenAPI, JSDoc?)
 

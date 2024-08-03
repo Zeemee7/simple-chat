@@ -22,7 +22,8 @@ export default function CustomerHomePage() {
 		<>
 			<h1>How can we help you?</h1>
 			{isChatSessionActive() ? (
-				<ChatSessionBox session={activeSession!}/>
+				// For now, user is hardcoded :-)
+				<ChatSessionBox session={activeSession!} user="Customer"/>
 			) : (
 				<Button size="lg"
 						onClick={handleStartSessionButtonClick}>
