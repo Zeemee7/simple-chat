@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +19,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @param <I> The identifier class.
  */
 @DataJpaTest
-public abstract class BaseMappingJpaRepositoryIT<M, E, I> {
+public abstract class BaseMappingJpaRepositoryIT<M, E, I, R extends JpaRepository<E, I>> {
 
 	@Autowired
-	MappingJpaRepository<M, E, I> repository;
+	protected MappingJpaRepository<M, E, I, R> repository;
 
 	@Autowired
 	protected TestEntityManager entityManager;

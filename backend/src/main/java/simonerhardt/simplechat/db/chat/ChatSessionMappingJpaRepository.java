@@ -8,7 +8,8 @@ import simonerhardt.simplechat.db.MappingJpaRepository;
 import java.util.UUID;
 
 @Repository
-class ChatSessionMappingJpaRepository extends MappingJpaRepository<ChatSession, ChatSessionEntity, UUID> implements ChatSessionRepository {
+class ChatSessionMappingJpaRepository extends MappingJpaRepository<ChatSession, ChatSessionEntity, UUID, ChatSessionJpaRepository>
+		implements ChatSessionRepository {
 
 	protected ChatSessionMappingJpaRepository(ChatSessionJpaRepository springDataJpaRepository) {
 		super(springDataJpaRepository);

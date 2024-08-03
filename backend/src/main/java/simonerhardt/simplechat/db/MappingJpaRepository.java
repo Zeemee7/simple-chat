@@ -14,11 +14,11 @@ import java.util.Optional;
  * @param <E> The JPA entity class.
  * @param <I> The identifier class.
  */
-public abstract class MappingJpaRepository<M, E, I> implements BaseRepository<M, I> {
+public abstract class MappingJpaRepository<M, E, I, R extends JpaRepository<E, I>> implements BaseRepository<M, I> {
 
-	protected final JpaRepository<E, I> springDataJpaRepository;
+	protected final R springDataJpaRepository;
 
-	protected MappingJpaRepository(JpaRepository<E, I> springDataJpaRepository) {
+	protected MappingJpaRepository(R springDataJpaRepository) {
 		this.springDataJpaRepository = springDataJpaRepository;
 	}
 

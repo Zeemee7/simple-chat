@@ -5,13 +5,20 @@ import simonerhardt.simplechat.core.chat.ChatMessage;
 import simonerhardt.simplechat.core.chat.ChatMessageRepository;
 import simonerhardt.simplechat.db.MappingJpaRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
-class ChatMessageMappingJpaRepository extends MappingJpaRepository<ChatMessage, ChatMessageEntity, UUID> implements ChatMessageRepository {
+class ChatMessageMappingJpaRepository extends MappingJpaRepository<ChatMessage, ChatMessageEntity, UUID, ChatMessageJpaRepository>
+		implements ChatMessageRepository {
 
 	protected ChatMessageMappingJpaRepository(ChatMessageJpaRepository springDataJpaRepository) {
 		super(springDataJpaRepository);
+	}
+
+	@Override
+	public List<ChatMessage> findByChatSessionId(UUID chatSessionId) {
+		return springDataJpaRepository.findByChatSessionId(chatSessionId).stream().map(this::mapToModel).toList();
 	}
 
 	@Override

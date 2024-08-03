@@ -10,6 +10,9 @@ const server = setupServer(
 	http.post(config.apiPrefix + '/chat-sessions', () => {
 		return HttpResponse.json({id: "new-id", startedAt: startedAt});
 	}),
+	http.get(config.apiPrefix + '/chat-sessions/new-id/messages', () => {
+		return HttpResponse.json([]);
+	}),
 )
 
 beforeAll(() => server.listen());

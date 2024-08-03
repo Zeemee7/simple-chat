@@ -7,7 +7,7 @@
 - [x] Customer: Start a chat session
 - [x] Agent: Show open chat sessions
 - [x] Send messages
-- [ ] Show messages on load
+- [x] Show messages on load
 - [ ] Push/poll messages
 - [ ] Some general documentation (README)
 - [ ] More code documentation (JavaDoc, OpenAPI, JSDoc?)

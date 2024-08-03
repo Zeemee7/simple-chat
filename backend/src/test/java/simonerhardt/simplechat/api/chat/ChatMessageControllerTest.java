@@ -1,5 +1,6 @@
 package simonerhardt.simplechat.api.chat;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -13,12 +14,14 @@ import simonerhardt.simplechat.core.chat.ChatMessage;
 import simonerhardt.simplechat.core.chat.ChatMessageRepository;
 
 import java.time.ZoneId;
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -54,6 +57,26 @@ class ChatMessageControllerTest {
 		String json = mvcResult.getResponse().getContentAsString();
 		ChatMessageDto chatMessageDto = new ObjectMapper().readValue(json, ChatMessageDto.class);
 		assertChatMessage(chatMessageDto, chatMessage);
+	}
+
+	@Test
+	void getChatMessagesReturnsChatMessages() throws Exception {
+		UUID chatSessionId = UUID.randomUUID();
+		ChatMessage chatMessage1 = new ChatMessage(chatSessionId, "user1", "message1");
+		ChatMessage chatMessage2 = new ChatMessage(chatSessionId, "user1", "message1");
+		when(chatMessageRepository.findByChatSessionId(chatSessionId)).thenReturn(List.of(chatMessage1, chatMessage2));
+
+		MvcResult mvcResult = mvc.perform(get("/api/v1/chat-sessions/{chatSessionId}/messages",
+						chatSessionId).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		String json = mvcResult.getResponse().getContentAsString();
+		List<ChatMessageDto> chatSessions = new ObjectMapper().readValue(json, new TypeReference<>() {
+		});
+		assertThat(chatSessions).isNotEmpty();
+		assertChatMessage(chatSessions.get(0), chatMessage1);
+		assertChatMessage(chatSessions.get(1), chatMessage2);
 	}
 
 	private static void assertChatMessage(ChatMessageDto dto, ChatMessage model) {

@@ -8,6 +8,7 @@ import simonerhardt.simplechat.core.chat.ChatMessageRepository;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,6 +26,11 @@ class ChatMessageController {
 			@RequestBody NewChatMessageDto newChatMessageDto) throws URISyntaxException {
 		ChatMessageDto dto = mapToDto(chatMessageRepository.save(mapToModel(newChatMessageDto, chatSessionId)));
 		return ResponseEntity.created(new URI(String.format("/chat-sessions/%s/messages/%s", dto.chatSessionId(), dto.id()))).body(dto);
+	}
+
+	@GetMapping
+	List<ChatMessageDto> getChatMessages(@PathVariable("chatSessionId") String chatSessionId) {
+		return chatMessageRepository.findByChatSessionId(UUID.fromString(chatSessionId)).stream().map(this::mapToDto).toList();
 	}
 
 	private ChatMessageDto mapToDto(ChatMessage chatMessage) {

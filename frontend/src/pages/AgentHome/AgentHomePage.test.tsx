@@ -9,9 +9,10 @@ const server = setupServer(
 	http.get(config.apiPrefix + '/chat-sessions', () => {
 		return HttpResponse.json([
 			{id: "a", startedAt: 10000000},
-			{id: "b", startedAt: 20000000},
-			{id: "c", startedAt: 30000000},
 		]);
+	}),
+	http.get(config.apiPrefix + '/chat-sessions/a/messages', () => {
+		return HttpResponse.json([]);
 	}),
 )
 

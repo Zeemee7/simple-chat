@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import({ ChatSessionMappingJpaRepository.class })
-class ChatSessionMappingJpaRepositoryIT extends BaseMappingJpaRepositoryIT<ChatSession, ChatSessionEntity, UUID> {
+class ChatSessionMappingJpaRepositoryIT extends BaseMappingJpaRepositoryIT<ChatSession, ChatSessionEntity, UUID, ChatSessionJpaRepository> {
 
 	@Override
 	protected Class<ChatSessionEntity> getEntityClass() {
