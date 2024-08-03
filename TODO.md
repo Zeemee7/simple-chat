@@ -8,7 +8,7 @@
 - [x] Agent: Show open chat sessions
 - [x] Send messages
 - [x] Show messages on load
-- [ ] Push/poll messages
+- [x] ~~push~~ poll messages
 - [ ] Some general documentation (README)
 - [ ] More code documentation (JavaDoc, OpenAPI, JSDoc?)
 

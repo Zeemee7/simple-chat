@@ -8,7 +8,7 @@ import { chatSessionClient } from "../../api/ChatSessionClient.ts";
 function AgentHomePage() {
 	const [activeSession, setActiveSession] = useState(undefined as ChatSession | undefined);
 	const [sessions, setSessions] = useState([] as ChatSession[]);
-	const [sessionsUpdated, setSessionsUpdated] = useState(false);
+	const [refreshSignal, setRefreshSignal] = useState(0);
 
 	function isChatSessionActive() {
 		return activeSession !== undefined;
@@ -18,15 +18,17 @@ function AgentHomePage() {
 		setActiveSession(chatSession);
 	}
 
+	function refresh() {
+		setRefreshSignal(refreshSignal + 1);
+	}
+
 	useEffect(() => {
-		if (!sessionsUpdated) {
-			chatSessionClient.getSessions().then(chatSessions => {
-				setSessions(chatSessions);
-				setActiveSession(undefined);
-				setSessionsUpdated(true);
-			}).catch(console.error);
-		}
-	});
+		chatSessionClient.getSessions().then(chatSessions => {
+			setSessions(chatSessions);
+		}).catch(console.error);
+		const intervalId = setInterval(() => refresh(), 1000);
+		return () => clearInterval(intervalId);
+	}, [refreshSignal]);
 
 	return (
 		<Box sx={{display: 'flex', minHeight: '100dvh'}}>
@@ -34,7 +36,7 @@ function AgentHomePage() {
 			<Box>
 				{isChatSessionActive() ? (
 					// For now, user is hardcoded :-)
-					<ChatSessionBox session={activeSession!} user="Customer Service" />
+					<ChatSessionBox session={activeSession!} user="Service Agent"/>
 				) : (
 					<Typography>Please select a chat session</Typography>
 				)}
