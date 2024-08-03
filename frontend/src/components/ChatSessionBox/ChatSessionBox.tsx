@@ -32,6 +32,8 @@ export default function ChatSessionBox({session, user}: Readonly<Props>) {
 				setMessages(messages);
 			})
 			.catch(console.error);
+		const intervalId = setInterval(() => refresh(), 1000);
+		return () => clearInterval(intervalId);
 	}, [session, refreshSignal]);
 
 	const messageBubbles = messages.map(message =>
