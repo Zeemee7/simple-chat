@@ -25,7 +25,7 @@ public abstract class MappingJpaRepository<M, E, I> implements BaseRepository<M,
 	@Override
 	@Transactional
 	public M save(M model) {
-		return mapToModel(springDataJpaRepository.save(mapToEntity(model)));
+		return mapToModel(springDataJpaRepository.saveAndFlush(mapToEntity(model)));
 	}
 
 	@Override

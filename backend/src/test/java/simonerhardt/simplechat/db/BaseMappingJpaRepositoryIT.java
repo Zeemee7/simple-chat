@@ -40,6 +40,8 @@ public abstract class BaseMappingJpaRepositoryIT<M, E, I> {
 	void findByIdLoadsAllProperties() {
 		E entity = createNewEntity();
 		entityManager.persist(entity);
+		entityManager.flush();
+		entityManager.clear();
 
 		Optional<M> loaded = repository.findById(getEntityId(entity));
 
@@ -52,6 +54,8 @@ public abstract class BaseMappingJpaRepositoryIT<M, E, I> {
 		E entity2 = createNewEntity();
 		entityManager.persist(entity1);
 		entityManager.persist(entity2);
+		entityManager.flush();
+		entityManager.clear();
 
 		Optional<M> loaded1 = repository.findById(getEntityId(entity1));
 		Optional<M> loaded2 = repository.findById(getEntityId(entity2));
