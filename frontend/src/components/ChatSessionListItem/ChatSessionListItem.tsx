@@ -3,9 +3,9 @@ import { ListItem, ListItemButton, ListItemContent } from "@mui/joy";
 import { MouseEventHandler } from "react";
 
 interface Props {
-	onClick?: MouseEventHandler
-	session: ChatSession
-	selected?: boolean
+	onClick?: MouseEventHandler;
+	session: ChatSession;
+	selected?: boolean;
 }
 
 export default function ChatSessionListItem({onClick, session, selected = false}: Readonly<Props>) {

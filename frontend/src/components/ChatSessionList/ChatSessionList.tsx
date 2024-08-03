@@ -3,9 +3,9 @@ import { List } from "@mui/joy";
 import ChatSessionListItem from "../ChatSessionListItem/ChatSessionListItem.tsx";
 
 interface Props {
-	onSessionSelected?: (chatSession: ChatSession) => void,
-	sessions: ChatSession[],
-	activeSession?: ChatSession,
+	onSessionSelected?: (chatSession: ChatSession) => void;
+	sessions: ChatSession[];
+	activeSession?: ChatSession;
 }
 
 export default function ChatSessionList({onSessionSelected, sessions, activeSession}: Readonly<Props>) {

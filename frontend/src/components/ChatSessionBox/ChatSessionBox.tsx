@@ -2,7 +2,7 @@ import ChatSession from "../../model/ChatSession.ts";
 import { Box } from "@mui/joy";
 
 interface Props {
-	session: ChatSession
+	session: ChatSession;
 }
 
 export default function ChatSessionBox({session}: Readonly<Props>) {
