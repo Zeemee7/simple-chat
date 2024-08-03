@@ -10,7 +10,7 @@ CREATE TABLE chat_message
 	sent_at         TIMESTAMP(9) NOT NULL,
 	chat_session_id UUID         NOT NULL,
 	message         TEXT         NOT NULL,
-	user            VARCHAR(255) NOT NULL,
+	user_name       VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (chat_session_id)
 		REFERENCES chat_session (id)

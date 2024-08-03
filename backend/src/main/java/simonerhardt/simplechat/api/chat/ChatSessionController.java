@@ -5,13 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import simonerhardt.simplechat.api.MappingUtils;
 import simonerhardt.simplechat.core.chat.ChatSession;
 import simonerhardt.simplechat.core.chat.ChatSessionRepository;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -36,10 +35,6 @@ class ChatSessionController {
 	}
 
 	private ChatSessionDto mapToDto(ChatSession chatSession) {
-		return new ChatSessionDto(chatSession.id().toString(), toEpochMillis(chatSession.startedAt()));
-	}
-
-	private long toEpochMillis(LocalDateTime localDateTime) {
-		return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		return new ChatSessionDto(chatSession.id().toString(), MappingUtils.toEpochMillis(chatSession.startedAt()));
 	}
 }
