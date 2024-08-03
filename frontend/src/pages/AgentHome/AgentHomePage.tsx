@@ -31,14 +31,18 @@ function AgentHomePage() {
 	}, [refreshSignal]);
 
 	return (
-		<Box sx={{display: 'flex', minHeight: '100dvh'}}>
-			<ChatSessionList sessions={sessions} onSessionSelected={handleSessionSelected} activeSession={activeSession}/>
-			<Box>
+		<Box sx={{display: "flex", minHeight: "100dvh"}}>
+			<Box sx={{flex: "1", borderRight: "1px solid", borderColor: "divider", overflowY: "auto"}}>
+				<ChatSessionList sessions={sessions} onSessionSelected={handleSessionSelected} activeSession={activeSession}/>
+			</Box>
+			<Box sx={{flex: "1"}}>
 				{isChatSessionActive() ? (
 					// For now, user is hardcoded :-)
 					<ChatSessionBox session={activeSession!} user="Service Agent"/>
 				) : (
-					<Typography>Please select a chat session</Typography>
+					<Box sx={{padding: 2}}>
+						<Typography color="neutral" level="body-lg">Please select a chat session</Typography>
+					</Box>
 				)}
 			</Box>
 		</Box>

@@ -13,7 +13,7 @@
 - [ ] More code documentation (JavaDoc, OpenAPI, JSDoc?)
 
 ## Nice to have
-- [ ] Make it look nice
+- [x] Make it look ~~nice~~ acceptable
 - [ ] Authentication and authorization
 - [ ] Docker build
 - [ ] Online deployment (Vercel?, Heroku?)

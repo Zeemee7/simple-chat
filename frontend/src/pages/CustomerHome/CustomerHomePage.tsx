@@ -1,4 +1,4 @@
-import { Button } from "@mui/joy";
+import { Box, Button, Stack, Typography } from "@mui/joy";
 import { useState } from "react";
 import ChatSession from "../../model/ChatSession.ts";
 import ChatSessionBox from "../../components/ChatSessionBox/ChatSessionBox.tsx";
@@ -19,17 +19,19 @@ export default function CustomerHomePage() {
 	}
 
 	return (
-		<>
-			<h1>How can we help you?</h1>
+		<Box sx={{display: "flex", flexDirection: "column", minHeight: "100dvh", justifyContent: "center"}}>
 			{isChatSessionActive() ? (
 				// For now, user is hardcoded :-)
 				<ChatSessionBox session={activeSession!} user="Customer"/>
 			) : (
-				<Button size="lg"
-						onClick={handleStartSessionButtonClick}>
-					Start chat with customer service
-				</Button>
+				<Stack spacing={4} sx={{padding: 2, alignItems: "center"}}>
+					<Typography level="h1">How can we help you?</Typography>
+					<Button size="lg"
+							onClick={handleStartSessionButtonClick}>
+						Start chat with customer service
+					</Button>
+				</Stack>
 			)}
-		</>
+		</Box>
 	);
 }

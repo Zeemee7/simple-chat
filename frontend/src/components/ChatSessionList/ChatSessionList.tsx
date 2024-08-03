@@ -15,7 +15,7 @@ export default function ChatSessionList({onSessionSelected, sessions, activeSess
 	);
 
 	return (
-		<List variant="outlined" size="md">
+		<List size="md">
 			{sessionItems}
 		</List>
 	);
