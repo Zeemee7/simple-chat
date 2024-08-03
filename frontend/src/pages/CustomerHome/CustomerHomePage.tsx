@@ -2,20 +2,16 @@ import { Button } from "@mui/joy";
 import { useState } from "react";
 import ChatSession from "../../model/ChatSession.ts";
 import ChatSessionBox from "../../components/ChatSessionBox/ChatSessionBox.tsx";
-import config from "../../config.ts";
-import axios from "axios";
+import { chatSessionClient } from "../../api/ChatSessionClient.ts";
+
 
 export default function CustomerHomePage() {
 	const [activeSession, setActiveSession] = useState(undefined as ChatSession | undefined);
 
-	function startSession() {
-		axios.post(config.apiPrefix + '/chat-sessions')
-			.then(response => {
-				setActiveSession(response.data);
-			})
-			.catch(error => {
-				console.error(error);
-			});
+	function handleStartSessionButtonClick() {
+		chatSessionClient.createSession()
+			.then(setActiveSession)
+			.catch(console.error);
 	}
 
 	function isChatSessionActive() {
@@ -29,7 +25,7 @@ export default function CustomerHomePage() {
 				<ChatSessionBox session={activeSession!}/>
 			) : (
 				<Button size="lg"
-						onClick={startSession}>
+						onClick={handleStartSessionButtonClick}>
 					Start chat with customer service
 				</Button>
 			)}
