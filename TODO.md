@@ -14,12 +14,13 @@
 
 ## Nice to have
 - [x] Make it look ~~nice~~ acceptable
-- [ ] Authentication and authorization for service agents
 - [x] Docker build
 - [x] Online deployment (~~Vercel?,~~ Heroku)
-- [ ] CI Build pipeline
 
 ## Future improvements
+- [ ] Authentication and authorization for service agents
+- [ ] CI Build pipeline
+- [ ] Use WebSockets instead of polling.
 - [ ] Increase test coverage where reasonable.
 - [ ] Make Docker build more efficient (split npm/Maven package retrieval and build).
 - [ ] Frontend: Focus on message input field automatically and carefully.
@@ -32,3 +33,8 @@
 - [ ] Frontend: Accessibility features.
 - [ ] Frontend: Better layout on small screens.
 - [ ] Frontend: Multi-language support.
+- [ ] Split deployment of frontend and backend, to allow independent scaling (requires centralized data storage).
+- [ ] End-to-end encryption.
+- [ ] Qualify requests: Customer is being asked initial questions, answers are displayed to the agent.
+- [ ] AI chat bot that is trained with the product/service documentation can answer simple questions.
+- [ ] CRM integration: Customer identifies itself, agent can easily fetch existing information about the customer.
