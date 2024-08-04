@@ -5,7 +5,7 @@ import ChatSessionBox from "../../components/ChatSessionBox/ChatSessionBox.tsx";
 import ChatSessionList from "../../components/ChatSessionList/ChatSessionList.tsx";
 import { chatSessionClient } from "../../api/ChatSessionClient.ts";
 
-function AgentHomePage() {
+export default function AgentHomePage() {
 	const [activeSession, setActiveSession] = useState(undefined as ChatSession | undefined);
 	const [sessions, setSessions] = useState([] as ChatSession[]);
 	const [refreshSignal, setRefreshSignal] = useState(0);
@@ -48,5 +48,3 @@ function AgentHomePage() {
 		</Box>
 	)
 }
-
-export default AgentHomePage

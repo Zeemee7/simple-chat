@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { chatMessageClient } from "../../api/ChatMessageClient.ts";
 import ChatMessage from "../../model/ChatMessage.ts";
 import ChatBubble from "../ChatBubble/ChatBubble.tsx";
+import { SendHorizontal } from "lucide-react";
 
 interface Props {
 	session: ChatSession;
@@ -63,6 +64,7 @@ export default function ChatSessionBox({session, user}: Readonly<Props>) {
 								   variant="solid"
 								   color="primary"
 								   type="submit"
+								   endDecorator={<SendHorizontal/>}
 								   sx={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>
 								   Send
 							   </Button>
