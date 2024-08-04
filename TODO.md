@@ -15,6 +15,6 @@
 ## Nice to have
 - [x] Make it look ~~nice~~ acceptable
 - [ ] Authentication and authorization
-- [ ] Docker build
+- [x] Docker build
 - [ ] Online deployment (Vercel?, Heroku?)
 - [ ] CI Build pipeline

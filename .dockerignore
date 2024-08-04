@@ -1,0 +1,17 @@
+# All files from in root folder
+*.*
+
+# IDE and Git files, no matter where
+**/.idea
+**/*.iml
+**/.vscode
+**/.gitignore
+**/.gitattributes
+
+# Frontend
+/frontend/node_modules
+
+# Backend
+/backend/target
+# Existing frontend build
+/backend/src/main/resources/static
