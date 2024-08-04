@@ -5,6 +5,7 @@ import java.util.Optional;
 
 /**
  * Base interface to extend the individual, model-specific repository interfaces from.
+ * This interface should contain operations that make sense for all models.
  *
  * @param <M> The business model class.
  * @param <I> The identifier class.

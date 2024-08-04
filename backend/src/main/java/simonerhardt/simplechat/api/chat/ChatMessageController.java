@@ -46,6 +46,9 @@ class ChatMessageController {
 		return new ChatMessage(UUID.fromString(chatSessionId), newChatMessageDto.user(), newChatMessageDto.message());
 	}
 
+	/*
+	 * DTO record that is retrieved to create new chat messages.
+	 */
 	private record NewChatMessageDto(String user, String message) {
 	}
 }

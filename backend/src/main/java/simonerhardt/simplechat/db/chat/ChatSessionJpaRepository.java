@@ -4,5 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface ChatSessionJpaRepository extends JpaRepository<ChatSessionEntity, UUID> {
+/**
+ * Spring Data JPA repository for {@link ChatSessionEntity}.
+ */
+interface ChatSessionJpaRepository extends JpaRepository<ChatSessionEntity, UUID> {
 }

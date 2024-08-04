@@ -8,11 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Base class to extend the individual JPA repository implementations from.
+ * Base class to extend the individual JPA repository implementations from. Because of the desired mapping
+ * from JPA entities to neutral (core) data models, Spring Data JPA repositories are not implemented directly.
+ * Instead, they are a (autowired) member of the respective {@link MappingJpaRepository} implementation and
+ * used to perform the actual JPA operations, whereas the {@link MappingJpaRepository} adds the mapping on
+ * top, and inputs/outputs only core data models.
  *
- * @param <M> The business model class.
+ * @param <M> The core model class.
  * @param <E> The JPA entity class.
- * @param <I> The identifier class.
+ * @param <I> The class of the model's/entity's identifier (has to be the same).
+ * @param <R> The Spring Data JPA repository providing the necessary JPA operations.
  */
 public abstract class MappingJpaRepository<M, E, I, R extends JpaRepository<E, I>> implements BaseRepository<M, I> {
 

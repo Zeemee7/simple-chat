@@ -4,10 +4,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import simonerhardt.simplechat.core.chat.ChatMessage;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * JPA entity for {@link ChatMessage}.
+ */
 @Entity
 @Table(name = "chat_message")
 class ChatMessageEntity {
