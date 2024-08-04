@@ -35,7 +35,7 @@ function AgentHomePage() {
 			<Box sx={{flex: "1", borderRight: "1px solid", borderColor: "divider", overflowY: "auto"}}>
 				<ChatSessionList sessions={sessions} onSessionSelected={handleSessionSelected} activeSession={activeSession}/>
 			</Box>
-			<Box sx={{flex: "1"}}>
+			<Box sx={{flex: "4"}}>
 				{isChatSessionActive() ? (
 					// For now, user is hardcoded :-)
 					<ChatSessionBox session={activeSession!} user="Service Agent"/>

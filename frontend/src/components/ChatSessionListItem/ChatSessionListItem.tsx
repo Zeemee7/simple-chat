@@ -10,7 +10,7 @@ interface Props {
 
 export default function ChatSessionListItem({onClick, session, selected = false}: Readonly<Props>) {
 	return (
-		<ListItem>
+		<ListItem variant="outlined">
 			<ListItemButton selected={selected} onClick={onClick}>
 				<ListItemContent>Chat started at {new Date(session.startedAt).toLocaleString()}</ListItemContent>
 			</ListItemButton>

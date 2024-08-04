@@ -1,5 +1,5 @@
 import ChatSession from "../../model/ChatSession.ts";
-import { List } from "@mui/joy";
+import { Box, List, Typography } from "@mui/joy";
 import ChatSessionListItem from "../ChatSessionListItem/ChatSessionListItem.tsx";
 
 interface Props {
@@ -15,8 +15,19 @@ export default function ChatSessionList({onSessionSelected, sessions, activeSess
 	);
 
 	return (
-		<List size="md">
-			{sessionItems}
-		</List>
+		<>
+			<Box sx={{padding: 2}}>
+				<Typography level="title-lg">Chat Sessions</Typography>
+			</Box>
+			{sessionItems.length ? (
+				<List size="md">
+					{sessionItems}
+				</List>
+			) : (
+				<Box sx={{padding: 2}}>
+					<Typography color="neutral" level="body-lg">No chat sessions yet.</Typography>
+				</Box>
+			)}
+		</>
 	);
 }
