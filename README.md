@@ -4,8 +4,10 @@ Start the Simple Chat Application with one of the following:
 1. Docker:
    ```
    docker build -t simple-chat .
-   docker run -d -p 8080:8080 --name simple-chat simple-chat
+   docker run -d -p 8080:8080 -e PORT=8080 --name simple-chat simple-chat
    ```
+   (The `PORT` variable has to be set for the image to be runnable in Heroku)  
+
 2. Using npm and Maven, see [Development](#development) section.
 
 Then, open [http://localhost:8080]() in a browser or use two browsers/clients to try out actual chatting.

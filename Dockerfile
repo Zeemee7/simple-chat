@@ -1,5 +1,5 @@
-FROM node:20-alpine3.20 as build
-RUN apk add openjdk21 maven
+FROM node:20-alpine3.20 AS build
+RUN apk add openjdk21 maven && apk cache clean
 
 WORKDIR /build
 COPY . .
@@ -14,9 +14,14 @@ WORKDIR /build/backend
 RUN mvn package -DskipTests
 
 # Run in fresh JRE image
-FROM eclipse-temurin:21-jre
-WORKDIR /app
-COPY --from=build /build/backend/target/*.jar simple-chat.jar
-CMD [ "java", "-jar", "simple-chat.jar"]
+FROM eclipse-temurin:21-jre-alpine
 
-EXPOSE 8080
+# Heroku does not allow to run with root (it's better anyway)
+RUN adduser -D chat
+USER chat
+
+WORKDIR /app
+COPY --from=build --chown=chat:chat /build/backend/target/*.jar simple-chat.jar
+
+# PORT environment variable is required by Heroku.
+CMD [ "java", "-Dserver.port=${PORT}", "-jar", "simple-chat.jar"]
